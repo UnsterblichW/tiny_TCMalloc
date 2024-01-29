@@ -65,7 +65,7 @@ public:
 private:
 	char* _memory = nullptr; // 指向内存块的指针
 	size_t _remanentBytes = 0; // 大块内存在切分过程中的剩余字节数
-	void* _freelist = nullptr; // 自由链表，用来连接归还的空闲空间
+	void* _freelist = nullptr; // 自由链表，用来连接归还的空闲空间，指向每一个通过Delete归还的空闲的块
 public:
 	std::mutex _poolMtx; // 防止ThreadCache申请时申请到空指针
 };
