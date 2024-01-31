@@ -1,5 +1,5 @@
-﻿#include"ThreadCache.h"
-#include"CentralCache.h"
+﻿#include "ThreadCache.h"
+#include "CentralCache.h"
 
 // 线程向tc申请size大小的空间
 void* ThreadCache::Allocate(size_t size)

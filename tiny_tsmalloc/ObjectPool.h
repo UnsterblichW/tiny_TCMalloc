@@ -2,7 +2,7 @@
 
 /*定长内存池*/
 
-#include"Common.h"
+#include "Common.h"
 
 template<class T>
 class ObjectPool

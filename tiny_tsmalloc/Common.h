@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-#include<cassert>
+#include <cassert>
 
-#include<iostream>
-#include<thread>
-#include<mutex>
+#include <iostream>
+#include <thread>
+#include <mutex>
 
-#include<unordered_map>
-#include<vector>
+#include <unordered_map>
+#include <vector>
 
 
 using std::vector;
@@ -39,7 +39,7 @@ inline static void* SystemAlloc(size_t kpage)
 #ifdef _WIN32 // Windows下的系统调用接口
 	void* ptr = VirtualAlloc(0, kpage << PAGE_SHIFT, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 #else
-	// linux下brk mmap等
+	// linux下 brk mmap等
 #endif
 
 	if (ptr == nullptr)
@@ -54,7 +54,7 @@ inline static void SystemFree(void* ptr)
 #ifdef _WIN32
 	VirtualFree(ptr, 0, MEM_RELEASE);
 #else
-	// sbrk unmmap等
+	// Linux下 sbrk unmmap等
 #endif
 }
 
@@ -70,8 +70,8 @@ class SizeClass; // 这里要声明一下，不然PageMap中用到了SizeClass�
 
 
 // 这里头文件要放到这，不然上面的函数ObjectPool中没有，就会报错
-#include"ObjectPool.h"
-#include"PageMap.h"
+//#include"ObjectPool.h"
+//#include"PageMap.h"
 
 class FreeList // ThreadCache中的自由链表
 {
@@ -121,7 +121,7 @@ public:
 		ObjNext(obj) = _freeList;
 		_freeList = obj;
 
-		++_size; // 插入一块，size + 1
+		_size++; // 插入一块，size + 1
 	}
 
 	void* Pop() // 用来提供空间的
@@ -131,7 +131,7 @@ public:
 		void* obj = _freeList;
 		_freeList = ObjNext(obj);
 
-		--_size; // 去掉一块，_size - 1
+		_size--; // 去掉一块，_size - 1
 
 		return obj;
 	}
@@ -255,12 +255,12 @@ public:
 class SizeClass
 {
 	// 线程申请size的对齐规则：整体控制在最多10%左右的内碎片浪费
-	//	size范围				对齐数				对应哈希桶下标范围
-	 // [1,128]					8B 对齐      		freelist[0,16)
-	 // [128+1,1024]			16B 对齐  			freelist[16,72)
-	 // [1024+1,8*1024]			128B 对齐  			freelist[72,128)
-	 // [8*1024+1,64*1024]		1024B 对齐    		freelist[128,184)
-	 // [64*1024+1,256*1024]	8*1024B 对齐  		freelist[184,208)
+	//	size范围					对齐数				对应哈希桶下标范围
+	//  [1,128]					8B 对齐      		freelist[0,16)
+	//  [128+1,1024]			16B 对齐  			freelist[16,72)
+	//  [1024+1,8*1024]			128B 对齐  			freelist[72,128)
+	//  [8*1024+1,64*1024]		1024B 对齐    		freelist[128,184)
+	//  [64*1024+1,256*1024]	8*1024B 对齐  		freelist[184,208)
 public:
 	//// 计算每个分区对应的对齐后的字节数(普通写法)
 	//static size_t _RoundUp(size_t size, size_t alignNum)
