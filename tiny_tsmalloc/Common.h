@@ -146,9 +146,12 @@ public:
 
 private:
 	void* _freeList = nullptr; // 自由链表，初始为空
-	size_t _maxSize = 1; // 当前自由链表申请未达到上限时，能够申请的最大块空间是多少
+
+	// 当前自由链表申请未达到上限时，能够申请的最大块空间是多少
 	// 初始值给1，表示第一次能申请的就是1块
 	// 到了上限之后_maxSize这个值就作废了
+	size_t _maxSize = 1; 
+	
 	size_t _size = 0; // 当前自由链表中有多少块空间
 };
 
@@ -226,7 +229,8 @@ public:
 	}
 
 	void Insert(Span* pos, Span* ptr)
-	{ // 在pos前面插入ptr
+	{ 
+		// 在pos前面插入ptr
 		assert(pos); // pos不为空
 		assert(ptr); // ptr不为空
 
@@ -241,7 +245,8 @@ public:
 	}
 
 	SpanList()
-	{ // 构造函数中搞哨兵位头结点
+	{ 
+		// 构造函数中搞哨兵位头结点
 		_head = new Span;
 
 		// 因为是双向循环的，所以都指向_head
@@ -283,7 +288,8 @@ public:
 
 	// 计算每个分区对应的对齐后的字节数(大佬写法)
 	static size_t _RoundUp(size_t size, size_t alignNum)
-	{									// alignNum是size对应分区的对齐数
+	{									
+		// alignNum是size对应分区的对齐数
 		return ((size + alignNum - 1) & ~(alignNum - 1));
 	}
 
@@ -310,18 +316,19 @@ public:
 			return _RoundUp(size, 8 * 1024);
 		}
 		else
-		{ // 单次申请空间大于256KB，直接按照页来对齐
-			return _RoundUp(size, 1 << PAGE_SHIFT);
-			// 这里直接给PAGE_SHIFT虽然说和前一个的8 * 1024KB一样，但
-			// 是我们如果后续想要修改页大小的时候就直接修改PAGE_SHIFT
+		{ 
+			// 单次申请空间大于256KB，直接按照页来对齐
+			// 这里直接给PAGE_SHIFT虽然说和前一个的8 * 1024KB一样，
+			// 但是我们如果后续想要修改页大小的时候就直接修改PAGE_SHIFT
 			// 这样就和前面的不一样了
+			return _RoundUp(size, 1 << PAGE_SHIFT);
 		}
 	}
 
 	// 求size对应在哈希表中的下标
 	static inline size_t _Index(size_t size, size_t align_shift)
-	{							/*这里align_shift是指对齐数的二进制位数。比如size为2的时候对齐数
-								为8，8就是2^3，所以此时align_shift就是3*/
+	{	
+		//这里align_shift是指对齐数的二进制位数。比如size为2的时候对齐数为8，8就是2^3，所以此时align_shift就是3
 		return ((size + (1 << align_shift) - 1) >> align_shift) - 1;
 		//这里_Index计算的是当前size所在区域的第几个下标，所以Index的返回值需要加上前面所有区域的哈希桶的个数
 	}
@@ -390,8 +397,7 @@ public:
 
 		// [2, 512]，一次批量移动多少个对象的(慢启动)上限值
 		// 小对象一次批量上限高
-		// 小对象一次批量上限低
-
+		// 大对象一次批量上限低
 		return num;
 	}
 
