@@ -32,5 +32,8 @@
     <ClInclude Include="ThreadCache.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ConcurrentAlloc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

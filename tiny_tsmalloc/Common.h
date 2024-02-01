@@ -153,18 +153,18 @@ private:
 struct Span // 以页为基本单位的结构体
 {
 public:
-	PageID _pageID = 0; // 页号
-	size_t _n = 0; // 当前span管理的页的数量
-	size_t _objSize = 0; // span管理页被切分成的块有多大
+	PageID _pageID = 0;			// 页号
+	size_t _n = 0;				// 当前span管理的页的数量
+	size_t _objSize = 0;		// span管理页被切分成的块有多大
 
-	void* _freeList = nullptr; // 每个span下面挂的小块空间的头结点
-	size_t use_count = 0; // 当前span分配出去了多少个块空间
+	void* _freeList = nullptr;	// 每个span下面挂的小块空间的头结点
+	size_t use_count = 0;		// 当前span分配出去了多少个块空间
 
 
-	Span* _prev = nullptr; // 前一个节点
-	Span* _next = nullptr; // 后一个节点
+	Span* _prev = nullptr;		// 前一个节点
+	Span* _next = nullptr;		// 后一个节点
 
-	bool _isUse = false; // 判断当前span是在cc中还是在pc中
+	bool _isUse = false;		// 判断当前span是在cc中还是在pc中
 };
 
 class SpanList

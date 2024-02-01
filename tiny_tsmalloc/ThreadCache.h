@@ -20,6 +20,7 @@ private:
 	FreeList _freeLists[FREE_LIST_NUM]; // 哈希，每个桶表示一个自由链表
 };
 
-// TLS的全局对象的指针，这样每个线程都能有一个独立的全局对象
+// TLS的全局对象的指针，这样每个线程都能有一个独立的全局对象 
+// Thread Local Storage: https://learn.microsoft.com/en-us/cpp/parallel/thread-local-storage-tls?view=msvc-170
 static _declspec(thread) ThreadCache* pTLSThreadCache = nullptr;
 //注意要给成static的，不然当多个.cpp文件包含该文件的时候会发生链接错误
