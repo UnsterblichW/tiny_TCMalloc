@@ -19,6 +19,7 @@ static const size_t MAX_BYTES = 256 * 1024; // ThreadCache单次申请的最大�
 static const size_t PAGE_NUM = 129; // span的最大管理页数
 static const size_t PAGE_SHIFT = 13; // 一页多少位，这里给一页8KB，就是13位
 
+// 这里根据windows的系统位数来定义PageID主要是以防万一，其实只要是比较新的VS都会自动转换size_t的大小的 <vcruntime.h>
 #ifdef _WIN64
 typedef unsigned long long PageID;
 #elif _WIN32
@@ -73,7 +74,8 @@ class SizeClass; // 这里要声明一下，不然PageMap中用到了SizeClass�
 //#include"ObjectPool.h"
 //#include"PageMap.h"
 
-class FreeList // ThreadCache中的自由链表
+// ThreadCache中的自由链表
+class FreeList
 {
 public:
 	// 获取当前桶中有多少块空间
@@ -150,7 +152,8 @@ private:
 	size_t _size = 0; // 当前自由链表中有多少块空间
 };
 
-struct Span // 以页为基本单位的结构体
+// 以页为基本单位的结构体
+struct Span
 {
 public:
 	PageID _pageID = 0;			// 页号
