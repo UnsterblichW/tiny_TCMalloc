@@ -26,8 +26,8 @@ private:
 	SpanList _spanLists[PAGE_NUM]; // pc中的哈希
 
 	// 哈希映射，用来快速通过页号找到对应span
-	//std::unordered_map<PageID, Span*> _idSpanMap;
-	TCMalloc_PageMap1<32 - PAGE_SHIFT> _idSpanMap;
+	std::unordered_map<PageID, Span*> _idSpanMap;
+	//TCMalloc_PageMap1<32 - PAGE_SHIFT> _idSpanMap;
 
 	ObjectPool<Span> _spanPool; // 创建span的对象池
 public:

@@ -136,22 +136,22 @@ void BigAlloc()
 	ConcurrentFree(p2);
 }
 
-//int main()
-//{
-//	//BigAlloc();
-//
-//	//AllocTest();
-//	//ConcurrentAllocTest1();
-//	//ConcurrentAllocTest2();
-//
-//	//TestAddressShift();
-//
-//	//TestConcurrentFree1();
-//	TestMultiThread();
-//
-//	//void* ptr = ConcurrentAlloc(500 * 1024);
-//	return 0;
-//}
+int main()
+{
+	//BigAlloc();
+
+	//AllocTest();
+	//ConcurrentAllocTest1();
+	//ConcurrentAllocTest2();
+
+	//TestAddressShift();
+
+	TestConcurrentFree1();
+	//TestMultiThread();
+
+	//void* ptr = ConcurrentAlloc(500 * 1024);
+	return 0;
+}
 
 //#include<iostream>
 //using std::min;
@@ -164,13 +164,13 @@ void BigAlloc()
 //	return 0;
 //}
 
-#include <stdio.h>
-#include <cstdlib>
-
-int main() {
-    int a = 10;
-    int b = 20;
-    a = min(a, b);
-    printf("The minimum value is: %d\n", a);
-    return 0;
-}
+//#include <stdio.h>
+//#include <cstdlib>
+//
+//int main() {
+//    int a = 10;
+//    int b = 20;
+//    a = min(a, b);
+//    printf("The minimum value is: %d\n", a);
+//    return 0;
+//}
