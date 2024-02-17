@@ -5,7 +5,8 @@
 2. 未支持多平台（仅支持windows），
 3. TCMalloc是Google对C的 `Malloc()` 和C++ 的运算符`new`的定制实现，可用于C和C++代码中的内存分配。TCMalloc是一个快速的多线程Malloc实现。
 ---
-## 参考项目：[Google TCMalloc](https://github.com/google/tcmalloc)
+## 参考项目：
+[Google TCMalloc](https://github.com/google/tcmalloc)
 
 ---
 ## 参考知识：
@@ -33,4 +34,9 @@ System: Windows10 / 11
 **Thread Local Storage / `thread_local`**
 [Microsoft文档](https://learn.microsoft.com/en-us/cpp/parallel/thread-local-storage-tls?view=msvc-170)
 [cppreference](https://zh.cppreference.com/w/cpp/language/storage_duration)
+
+---
+## 个人整理的文档（on working。。。）
+
+[notion 文档](https://unsterblich.notion.site/tcmalloc-6825d235fcb54b54a8973328145d951a?pvs=4)
 
