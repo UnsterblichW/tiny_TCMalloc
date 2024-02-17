@@ -67,13 +67,6 @@ static void*& ObjNext(void* obj) // obj的头4/8个字节
 	return *(void**)obj;
 }
 
-class SizeClass; // 这里要声明一下，不然PageMap中用到了SizeClass会报错，或者直接将PageMap放到最后面引用
-
-
-// 这里头文件要放到这，不然上面的函数ObjectPool中没有，就会报错
-//#include"ObjectPool.h"
-//#include"PageMap.h"
-
 // ThreadCache中的自由链表
 class FreeList
 {
