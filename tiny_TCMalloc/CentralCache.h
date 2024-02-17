@@ -26,9 +26,7 @@ public:
 
 private:
 	// 单例，去掉构造、拷构和拷赋
-	CentralCache()
-	{}
-
+	CentralCache(){}
 	CentralCache(const CentralCache& copy) = delete;
 	CentralCache& operator =(const CentralCache& copy) = delete;
 
