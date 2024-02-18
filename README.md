@@ -10,7 +10,7 @@
 
 ---
 ## 参考知识：
-* [cnblogs的博客](https://www.cnblogs.com/jiujuan/p/13869547.html)
+* [博客](https://blog.csdn.net/qq_41420788/article/details/127344442)
 * [TCMalloc的官方技术介绍](https://github.com/google/tcmalloc/blob/master/docs/design.md)
 
 ---
