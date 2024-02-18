@@ -18,7 +18,7 @@ public:
 	/*size表示tc需要的单块空间的大小*/
 	/*返回值是cc实际提供的空间大小*/
 
-// 获取一个管理空间不为空的span
+	// 获取一个管理空间不为空的span
 	Span* GetOneSpan(SpanList& list, size_t size);
 
 	// 将tc还回来的多块空间放到span中
