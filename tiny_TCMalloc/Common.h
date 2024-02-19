@@ -17,7 +17,7 @@ using std::endl;
 static const size_t FREE_LIST_NUM = 208; // 哈希表中自由链表个数
 static const size_t MAX_BYTES = 256 * 1024; // ThreadCache单次申请的最大字节数
 static const size_t PAGE_NUM = 129; // span的最大管理页数
-static const size_t PAGE_SHIFT = 13; // 一页多少位，这里给一页8KB，就是13位
+static const size_t PAGE_SHIFT = 12; // 一页多少位，这里给一页8KB，就是13位
 
 // 这里根据windows的系统位数来定义PageID主要是以防万一，其实只要是比较新的VS都会自动转换size_t的大小的 <vcruntime.h>
 #ifdef _WIN64

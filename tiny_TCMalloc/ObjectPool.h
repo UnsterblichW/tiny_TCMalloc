@@ -28,7 +28,7 @@ public:
 				//_memory = (char*)malloc(_remanentBytes);
 
 				// 右移13位，就是除以8KB，也就是得到的是16，这里就表示申请16页
-				_memory = (char*)SystemAlloc(_remanentBytes >> 13);
+				_memory = (char*)SystemAlloc(_remanentBytes >> PAGE_SHIFT);
 
 				if (_memory == nullptr) // 开失败了抛异常
 				{
